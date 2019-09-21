@@ -13,7 +13,7 @@ mongoose.set('useUnifiedTopology', true);
 // DB Config
 const db = require('./config/keys').uri;
 
-mongoose.connect('mongodb+srv://iamr0man:danit0@cluster0-51kl1.mongodb.net/test?retryWrites=true&w=majority')
+mongoose.connect(db)
     .then(() => console.log('Connected to MongoDB...'))
     .catch(err => console.error('Could not connect to MongoDB...'));
 
