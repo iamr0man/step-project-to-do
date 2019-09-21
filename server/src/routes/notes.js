@@ -6,45 +6,38 @@ const express = require('express');
 
 const router = express.Router();
 
-//Return all notes in DB
-router.get('/', async (req, res) => {
-    const note = await Note.find().sort({
-        name: 1
-    });
-    res.send(note);
+//Return create form note
+router.get('/notes', async (req, res) => {
+    res.render('notes', {});
 });
 
-//Create one note
-router.post('/', async (req, res) => {
-    //This data(req.body) need to receive from inputs or another tag
-    const {
-        error
-    } = validate(req.body);
-    if (error) return res.status(400).send(error.details[0].message);
-    const note = new Note({
-        title: req.body.title,
-        description: req.body.description
+//Detail view for note
+router.get('/notes/:id', async (req, res) => {
+    const note = await Note.findById(req.params.id);
+    res.render('detailNote', {
+        title: note.title,
+        description: note.description
     });
-    const result = await note.save();
-    res.send(result);
 });
 
 //Change data in note
-router.put('/:id', async (req, res) => {
-    const {
-        error
-    } = validate(req.body);
-    if (error) return res.status(400).send(error.details[0].message);
+router.put('/api/notes/:id', async (req, res) => {
+    // const {
+    //     error
+    // } = validate(req.body);
+    // if (error) return res.status(400).send(error.details[0].message);
+    
+
     const note = await Note.findByIdAndUpdate(req.params.id, {
-        title: req.body.title,
-        description: req.body.description
-    }, {
-        new: true
+        title: title,
+        description: description
     })
 
     if (!note) return res.status(404).send('The note woth given ID was not found.')
 
     res.send(note);
+
+    
 })
 
 //Delete note
