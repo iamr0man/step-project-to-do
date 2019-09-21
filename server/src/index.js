@@ -29,7 +29,6 @@ app.use(express.json())
 app.use('/notes', notes);
 app.use('/', main);
 
-
 app.set('views', '../template/views/');
 app.set('view engine', 'pug');
 
