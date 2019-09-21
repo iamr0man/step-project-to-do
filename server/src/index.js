@@ -23,16 +23,16 @@ app.use(
         extended: true
     })
 );
-
+app.use(express.static('../public/'));
 app.use(bodyParser.json());
 app.use(express.json())
 app.use('/notes', notes);
 app.use('/', main);
 
+
 app.set('views', '../template/views/');
 app.set('view engine', 'pug');
 
 
-
 const port = process.env.POTY || 3000;
-app.listen(port, () => console.log(`Listening the port ${port}...`))
+app.listen(port, () => console.log(`Listening the port ${port}...`));
