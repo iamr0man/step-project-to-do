@@ -1,11 +1,12 @@
 html
     include ../partials/head.pug
     
-    body(class="bg-secondary")
+    body(class="bg-secondary h-100")
         div(class="container w-100 pt-3")
             div(class="form-group w-90")
-                input(type="text" class="form-control" placeholder="Введите заголовок..." id="inputDefault")
+                input(type="text" class="form-control" placeholder="Введите заголовок..." id="inputDefault") 
             div(class="form-group w-90")
                 textarea(class="form-control" id="exampleTextarea" rows="3"
-                style="margin-top: 0px; margin-bottom: 0px; height: 160px;" placeholder="Заметка...")
-        
+                style="margin-top: 0px; margin-bottom: 0px; height: 160px;" placeholder="Заметка...")    
+            div(class="form-group text-center")
+                button(type="button" class="btn btn-dark") Create
