@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 const notes = require('./routes/notes');
-// const lists = require('./routes/lists');
+const main = require('./routes/main');
 
+// const lists = require('./routes/lists');
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -26,7 +27,11 @@ app.use(
 app.use(bodyParser.json());
 app.use(express.json())
 app.use('/notes', notes);
+app.use('/', main);
+
+app.set('views', '../template/views/');
 app.set('view engine', 'pug');
+
 
 
 const port = process.env.POTY || 3000;
