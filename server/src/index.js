@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const notes = require('./routes/notes');
-// const lists = require('./routes/lists');
+const main = require('./routes/main');
+const lists = require('./routes/lists');
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -21,11 +22,13 @@ app.use(
         extended: true
     })
 );
-
+app.use(express.static('../public/'));
 app.use(bodyParser.json());
 app.use(express.json())
+
 app.use('/', notes);
-// app.use('/lists', lists);
+app.use('/', main);
+
 app.set('view engine', 'pug');
 app.set('views', '../template/views/');
 
