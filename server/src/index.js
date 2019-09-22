@@ -3,6 +3,7 @@ const notes = require('./routes/notes');
 const main = require('./routes/main');
 const lists = require('./routes/lists');
 
+const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
@@ -29,8 +30,8 @@ app.use(express.json())
 app.use('/', notes);
 app.use('/', main);
 
+app.set('views', path.join(__dirname, '../template/views'));
 app.set('view engine', 'pug');
-app.set('views', '../template/views/');
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Listening the port ${port}...`))
