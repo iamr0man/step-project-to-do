@@ -37,23 +37,4 @@ router.put('/api/notes/:id', async (req, res) => {
     // res.render('/', {})
 })
 
-//Delete note
-router.delete('/:id', async (req, res) => {
-    const note = await Note.findByIdAndRemove(req.params.id);
-
-    if (!note) return res.send(404).send('The note with the given ID was not found.')
-
-    res.send(note)
-
-})
-
-//Get note
-router.get('/:id', async (req, res) => {
-    const note = await Note.findById(req.params.id);
-
-    if (!note) return res.send(404).send('The note with the given ID was not found.');
-
-    res.send(note)
-})
-
 module.exports = router;
