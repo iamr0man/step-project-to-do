@@ -29,8 +29,8 @@ app.use(express.json())
 app.use('/', notes);
 app.use('/', main);
 
-app.set('view engine', 'pug');
 app.set('views', '../template/views/');
+app.set('view engine', 'pug');
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Listening the port ${port}...`))
