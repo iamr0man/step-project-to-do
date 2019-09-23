@@ -4,21 +4,23 @@ class Note extends Api {
         this.list = list;
     }
 
-    url = 'http://localhost:3000';
-
-    createNote() {
-        return super.get(`${this.url}/notes`); //work with this uri
+    static createNote() {
+        debugger;
+        return super.get(this.url + `/notes`); //work with this uri
     }
 
-    saveNote(obj) {
-        return super.post(`${this.url}/notes`, obj)
+    static saveNote(obj) {
+        debugger;
+        return super.post(this.url + `/notes`, obj)
     }
 
-    editNote(id, obj) {
-        return super.put(`${this.url}/api/notes/${id}`, obj)
+    static editNote(id, obj) {
+        return super.put(this.url + `/api/notes/${id}`, obj)
     }
 
-    deleteNote(id) {
-        return super.delete(`${this.url}/api/notes/${id}`)
+    static deleteNote(id) {
+        return super.delete(this.url + `/api/notes/${id}`)
     }
 }
+
+Note.url = 'http://localhost:3000'

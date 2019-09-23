@@ -1,13 +1,10 @@
 class Api {
 
-    get(url) {
+    static get(url) {
         return fetch(url)
-            .then(response => {
-                return response.text();
-            });
     }
 
-    async post(url, obj) {
+    static async post(url, obj) {
         return await fetch(url, {
             method: 'POST',
             headers: {
@@ -18,7 +15,7 @@ class Api {
         })
     }
 
-    async put(url, obj) {
+    static async put(url, obj) {
         return await fetch(url, {
             method: 'PUT',
             headers: {
@@ -29,7 +26,7 @@ class Api {
         })
     }
 
-    async delete(url) {
+    static async delete(url) {
         return await fetch(url, {
             method: 'DELETE'
         })
