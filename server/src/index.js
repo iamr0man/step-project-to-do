@@ -17,12 +17,18 @@ mongoose.connect(db)
     .then(() => console.log('Connected to MongoDB...'))
     .catch(err => console.error('Could not connect to MongoDB...'));
 
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    next();
+});
+
 app.use(
     bodyParser.urlencoded({
         extended: true
     })
 );
-app.use(express.static('../public/'));
+
+app.use(express.static(path.join(__dirname, '../public/')));
 app.use(bodyParser.json());
 app.use(express.json())
 

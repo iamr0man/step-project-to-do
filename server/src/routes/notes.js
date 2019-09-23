@@ -1,6 +1,5 @@
 const {
-    Note,
-    validate
+    Note
 } = require('../models/note')
 const express = require('express');
 
@@ -14,49 +13,48 @@ router.get('/notes', async (req, res) => {
 //Detail view for note
 router.get('/notes/:id', async (req, res) => {
     const note = await Note.findById(req.params.id);
+
+    if (!note) res.status(404).send('The note woth given ID was not found')
+
     res.render('detailNote', {
         title: note.title,
         description: note.description
     });
 });
 
-//Change data in note
-router.put('/api/notes/:id', async (req, res) => {
-    // const {
-    //     error
-    // } = validate(req.body);
-    // if (error) return res.status(400).send(error.details[0].message);
-    
+router.post('/notes', async (req, res) => {
+    const note = new Note({
+        title: req.body.title,
+        description: req.body.description
+    })
 
+    try {
+        const result = await note.save();
+        res.redirect('/')
+    } catch (e) {
+        res.send(e)
+    }
+})
+
+//Change data in note
+router.put('/api/notes/:id?', async (req, res) => {
     const note = await Note.findByIdAndUpdate(req.params.id, {
-        title: title,
-        description: description
+        title: req.body.title,
+        description: req.body.description
     })
 
     if (!note) return res.status(404).send('The note woth given ID was not found.')
-
-    res.send(note);
-
-    
+  
+    res.redirect('/')
 })
 
-//Delete note
-router.delete('/:id', async (req, res) => {
+router.delete('/api/notes/:id', async (req, res) => {
     const note = await Note.findByIdAndRemove(req.params.id);
 
-    if (!note) return res.send(404).send('The note with the given ID was not found.')
+    if (!note) return res.status(404).send('The note woth given ID was not found.')
 
-    res.send(note)
-
+    res.redirect('/')
 })
 
-//Get note
-router.get('/:id', async (req, res) => {
-    const note = await Note.findById(req.params.id);
-
-    if (!note) return res.send(404).send('The note with the given ID was not found.');
-
-    res.send(note)
-})
 
 module.exports = router;
