@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const notes = require('./routes/notes');
 const main = require('./routes/main');
-const lists = require('./routes/lists');
 
 const path = require('path');
 const express = require('express');

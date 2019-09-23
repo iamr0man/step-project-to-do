@@ -4,6 +4,7 @@ class Note extends Api {
         this.list = list;
     }
     createNote() {
-        return super.get(`${window.location.href }/notes`);
+            
+        return window.location.href= `${window.location.href}notes`;
     }
 }
