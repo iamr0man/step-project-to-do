@@ -29,8 +29,8 @@ router.post('/notes', async (req, res) => {
     })
 
     try {
-        const result = await note.save();
-        res.status(200).send(result);
+        await note.save();
+        res.redirect('/')
     } catch (e) {
         res.send(e)
     }
