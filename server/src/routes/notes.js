@@ -29,8 +29,8 @@ router.post('/notes', async (req, res) => {
     })
 
     try {
-        await note.save();
-        res.redirect('/')
+        const result = await note.save();
+        res.status(200).json(result)
     } catch (e) {
         res.send(e)
     }
@@ -45,7 +45,7 @@ router.put('/api/notes/:id?', async (req, res) => {
 
     if (!note) return res.status(404).send('The note woth given ID was not found.')
 
-    res.redirect('/')
+    res.status(200).json(note)
 })
 
 router.delete('/api/notes/:id', async (req, res) => {
@@ -53,7 +53,7 @@ router.delete('/api/notes/:id', async (req, res) => {
 
     if (!note) return res.status(404).send('The note woth given ID was not found.')
 
-    res.redirect('/')
+    res.status(200).json(note)
 })
 
 
