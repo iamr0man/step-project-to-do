@@ -30,7 +30,7 @@ router.post('/notes', async (req, res) => {
 
     try {
         const result = await note.save();
-        res.status(200).send(result);
+        res.redirect('/')
     } catch (e) {
         res.send(e)
     }
@@ -44,7 +44,7 @@ router.put('/api/notes/:id?', async (req, res) => {
     })
 
     if (!note) return res.status(404).send('The note woth given ID was not found.')
-
+  
     res.redirect('/')
 })
 
