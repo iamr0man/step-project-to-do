@@ -1,4 +1,3 @@
-const newNote = new Note();
 const title = document.getElementById('inputDefault')
 const desc = document.getElementById('exampleTextarea')
 
@@ -10,12 +9,8 @@ const id = url.split('/')[4]
 saveBtn.addEventListener('click', saveNote);
 
 function saveNote() {
-    newNote.saveNote({
-            title: title.value,
-            description: desc.value
-        })
-        .then(res => {
-            window.location.href = '/'
-        })
-        .catch(err => console.log(err))
+    Note.saveNote({
+        title: title.value,
+        description: desc.value
+    }).then(() => window.location.href = '/')
 }
