@@ -4,7 +4,6 @@ class Api {
             .then(response => {
                 return response;
             });
-    }
 
     static async post(url, obj) {
         return await fetch(url, {
@@ -17,7 +16,8 @@ class Api {
         })
     }
 
-    static async put(url,obj) {
+    static async put(url, obj) {
+
         return await fetch(url, {
             method: 'PUT',
             headers: {
@@ -28,7 +28,7 @@ class Api {
         })
     }
 
-    static async del(url) {
+    static async delete(url) {
         return await fetch(url, {
             method: 'DELETE'
         })

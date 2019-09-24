@@ -18,6 +18,6 @@ class List extends Api {
     }
 
     static deleteList(id){
-        return super.del(this.url + `api/lists/${id}`);
+        return super.delete(this.url + `api/lists/${id}`);
     }
 }
