@@ -1,8 +1,9 @@
 class Api {
-
     static get(url) {
         return fetch(url)
-    }
+            .then(response => {
+                return response;
+            });
 
     static async post(url, obj) {
         return await fetch(url, {
@@ -16,6 +17,7 @@ class Api {
     }
 
     static async put(url, obj) {
+
         return await fetch(url, {
             method: 'PUT',
             headers: {

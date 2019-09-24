@@ -2,15 +2,20 @@ const mongoose = require('mongoose');
 
 const noteSchema = new mongoose.Schema({
     title: {
-        type: String,
-        required: true,
-        minlength: 1
+        type: String
     },
     description: {
-        type: String,
-        required: true,
-        minlength: 1
-    }
+        type: String
+    },
+    taskList: [{
+        task: {
+            type: String
+        },
+        isDone: {
+            type: Boolean,
+            default: false
+        }
+    }]
 });
 
 const Note = mongoose.model(
