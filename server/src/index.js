@@ -18,6 +18,11 @@ mongoose.connect(db)
     .then(() => console.log('Connected to MongoDB...'))
     .catch(err => console.error('Could not connect to MongoDB...'));
 
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    next();
+});
+
 app.use(
     bodyParser.urlencoded({
         extended: true
@@ -29,9 +34,10 @@ app.use(express.json())
 
 app.use('/', notes);
 app.use('/', main);
+app.use('/', lists);
 
 app.set('views', path.join(__dirname, '../template/views'));
 app.set('view engine', 'pug');
 
 const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`Listening the port ${port}...`))
+app.listen(port, () => console.log(`Listening the port ${port}...`));
