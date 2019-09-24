@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const notes = require('./routes/notes');
+const lists = require('./routes/lists');
 const main = require('./routes/main');
 
 const path = require('path');
@@ -33,8 +34,9 @@ app.use(bodyParser.json());
 app.use(express.json())
 
 app.use('/', notes);
-app.use('/', main);
 app.use('/', lists);
+app.use('/', main);
+
 
 app.set('views', path.join(__dirname, '../template/views'));
 app.set('view engine', 'pug');

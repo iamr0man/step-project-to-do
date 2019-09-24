@@ -4,7 +4,7 @@ class Api {
             .then(response => {
                 return response;
             });
-
+        }
     static async post(url, obj) {
         return await fetch(url, {
             method: 'POST',

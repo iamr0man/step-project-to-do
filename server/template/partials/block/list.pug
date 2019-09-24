@@ -1,0 +1,8 @@
+div.list.position-relative.w-75.ml-auto.mr-auto.mt-5.bg-light.text-center.p-4.shadow-sm(id =`${note.id}`)
+    p.font-weight-bold  #{note.title}
+    if note.taskList
+        each val, index in note.taskList
+            if val['isDone']    
+                p.text-success #{val['task']}
+            else
+                p.text-danger #{val['task']}

@@ -8,6 +8,10 @@ class List extends Api {
     static createList() {
         return super.get(this.url + 'lists');
     }
+    static openEditList(id, obj){
+        return super.get(this.url + `lists/${id}`, obj);
+    }
+
 
     static saveList(obj) {
         return super.post(this.url + 'api/lists', obj);
@@ -19,5 +23,8 @@ class List extends Api {
 
     static deleteList(id){
         return super.delete(this.url + `api/lists/${id}`);
+    }
+    static deleteAll(){
+        return super.delete(this.url);
     }
 }
