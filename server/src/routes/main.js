@@ -14,7 +14,10 @@ router.get('/', async (req, res) => {
     .catch(() => { res.send('Sorry! Something went wrong.'); });
 });
 router.delete('/', async (req, res) => {
-    Note.remove().exec();
+    Note.deleteMany({},function(err) {
+        if(err) { return handleError(res, err); }
+        return res.send(204);
+      });
 });
 
 
