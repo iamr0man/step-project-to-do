@@ -5,12 +5,13 @@ class Note extends Api {
     }
 
     static createNote() {
-        debugger;
         return super.get(this.url + `/notes`); //work with this uri
+    }
+    static openEditNote(id, obj){
+        return super.get(this.url + `/notes/${id}`, obj);
     }
 
     static saveNote(obj) {
-        debugger;
         return super.post(this.url + `/notes`, obj)
     }
 
