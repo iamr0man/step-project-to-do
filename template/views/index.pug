@@ -1,0 +1,15 @@
+html
+    include ../partials/head
+    body
+        include ../partials/block/menu
+        each note in notelist
+            if note.title
+                if note.description
+                    include ../partials/block/note
+                        include ../partials/block/deletebutton
+                else
+                    include ../partials/block/list
+                        include ../partials/block/deletebutton
+
+        include ../partials/footer
+        
