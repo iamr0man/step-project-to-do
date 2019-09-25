@@ -1,6 +1,5 @@
 const {
-    Note,
-    validate
+    Note
 } = require('../models/note')
 const express = require('express');
 
@@ -14,27 +13,48 @@ router.get('/notes', async (req, res) => {
 //Detail view for note
 router.get('/notes/:id', async (req, res) => {
     const note = await Note.findById(req.params.id);
+
+    if (!note) res.status(404).send('The note woth given ID was not found')
+
     res.render('detailNote', {
         title: note.title,
         description: note.description
     });
 });
 
+router.post('/notes', async (req, res) => {
+    const note = new Note({
+        title: req.body.title,
+        description: req.body.description
+    })
+
+    try {
+        const result = await note.save();
+        res.status(200).json(result)
+    } catch (e) {
+        res.send(e)
+    }
+})
+
 //Change data in note
-router.put('/api/notes/:id', async (req, res) => {
-    // const {
-    //     error
-    // } = validate(req.body);
-    // if (error) return res.status(400).send(error.details[0].message);
-    
+router.put('/api/notes/:id?', async (req, res) => {
     const note = await Note.findByIdAndUpdate(req.params.id, {
-        title: req.query.title,
-        description: req.query.description
+        title: req.body.title,
+        description: req.body.description
     })
 
     if (!note) return res.status(404).send('The note woth given ID was not found.')
 
-    // res.render('/', {})
+    res.status(200).json(note)
 })
+
+router.delete('/api/notes/:id', async (req, res) => {
+    const note = await Note.findByIdAndRemove(req.params.id);
+
+    if (!note) return res.status(404).send('The note woth given ID was not found.')
+
+    res.status(200).json(note)
+})
+
 
 module.exports = router;
