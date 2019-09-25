@@ -3,6 +3,8 @@ class Note extends Api {
         super();
         this.list = list;
     }
+    
+    static url = 'https://google-keep-nodejs-app.herokuapp.com';
 
     static createNote() {
         return super.get(this.url + `/notes`); //work with this uri
@@ -23,5 +25,3 @@ class Note extends Api {
         return super.delete(this.url + `/api/notes/${id}`)
     }
 }
-
-Note.url = 'https://desolate-spire-36586.herokuapp.com'
