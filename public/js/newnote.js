@@ -24,4 +24,4 @@ class Note extends Api {
     }
 }
 
-Note.url = 'http://localhost:3000'
+Note.url = 'https://desolate-spire-36586.herokuapp.com'
