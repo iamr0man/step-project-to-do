@@ -3,7 +3,7 @@ class List extends Api {
         super();
     }
 
-    static url = 'http://desolate-spire-36586.herokuapp.com/';
+    static url = 'https://desolate-spire-36586.herokuapp.com/';
 
     static createList() {
         return super.get(this.url + 'lists');
